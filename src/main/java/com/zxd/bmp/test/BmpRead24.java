@@ -42,7 +42,7 @@ public class BmpRead24 extends JFrame{
 
     private static int[][] red,green,blue;
 
-    Graphics g;
+//    Graphics g;
 
     public static void main(String[] args){
 //        readFile("D:/2.bmp");
@@ -70,8 +70,8 @@ public class BmpRead24 extends JFrame{
             System.out.println("width:"+width+",height:"+height);
             // 调用可以将整个位图数据读取成byte数组的方法
             getInf(bis);
-            fin.close();
             bis.close();
+            fin.close();
             // 创建BMP对象来显示图画
             showUI();
         } catch (Exception e) {
@@ -82,7 +82,7 @@ public class BmpRead24 extends JFrame{
     /**
      * 得到位图数据的int数组
      *
-     * @param dis
+     * @param bis
      *  数据输入流对象
      */
     public void getInf(java.io.BufferedInputStream bis) {
@@ -131,9 +131,9 @@ public class BmpRead24 extends JFrame{
     public void showUI() {
         // 对窗体的属性进行设置
         this.setTitle("BMP解析");//设置标题
-        this.setSize(width, height);//设置窗体大小
+        this.setSize(width * 2, height * 2);//设置窗体大小
         this.setDefaultCloseOperation(3);//点击关闭，程序自动退出。
-        this.setResizable(false);//设置窗体大小不可以调节
+        this.setResizable(true);//设置窗体大小不可以调节
 //        this.setLocationRelativeTo(null);//设置窗体出现在屏幕中间
 
         //创建自己的panel，用其来显示图形。
@@ -143,7 +143,7 @@ public class BmpRead24 extends JFrame{
         Dimension di = new Dimension(width, height);//设置panel大小
         panel.setPreferredSize(di);
         this.add(panel);//窗体添加panel
-        this.setVisible(true);//使窗体可见。
+        this.setVisible(true);//使窗体可见
     }
 
     class MyPanel extends JPanel{
