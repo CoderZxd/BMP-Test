@@ -42,12 +42,18 @@ public class BmpRead24 extends JFrame{
 
     private static int[][] red,green,blue;
 
+    private static Color[][] pointArray;
+
 //    Graphics g;
 
     public static void main(String[] args){
 //        readFile("D:/2.bmp");
         BmpRead24 bmp = new BmpRead24();
         bmp.init();
+    }
+
+    public static Color[][] getPointArray(){
+        return pointArray;
     }
 
     public void init(){
@@ -90,6 +96,7 @@ public class BmpRead24 extends JFrame{
         red = new int[height][width];
         green = new int[height][width];
         blue = new int[height][width];
+        pointArray = new Color[height][width];
         // 通过计算得到每行计算机需要填充的字符数。
         // 为什么要填充？这是因为windows系统在扫描数据的时候，每行都是按照4个字节的倍数来读取的。
         // 因为图片是由每个像素点组成。而每个像素点都是由3个颜色分量来构成的，而每个分量占据1个字节。
@@ -112,6 +119,7 @@ public class BmpRead24 extends JFrame{
                     blue[i][j] = bis.read();
                     green[i][j] = bis.read();
                     red[i][j] = bis.read();
+                    pointArray[i][j] = new Color(red[i][j],green[i][j],blue[i][j]);
 //                    System.out.println("i:"+i+",j:"+j+"red:"+red[i][j]+"green:"+green[i][j]+"blue:"+blue[i][j]);
                     // 这里一定要知道，其实系统在给位图数据中添加填充0的时候，都是加在每行的最后。
                     // 但是我们在使用dis.skipBytes（）这个方法的时候，却不一定要在最后一列。
